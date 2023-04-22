@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Liberation Mono:pixelsize=18:antialias=true:autohint=true";
+static char *font = "FiraCode-Regular:pixelsize=18:antialias=true:autohint=true";
 static int borderpx = 2;
 
 /*
@@ -100,34 +100,34 @@ float alpha = 0.65;
 static const char *colorname[] = {
 	/* 8 normal colors */
 
-        "#191a1c", /* black   */
-        "#4d1d1d", /* red     */
-        "#384d42", /* green   */
-        "#ad8f74", /* yellow  */
-        "#1e384d", /* blue    */
-        "#85678f", /* magenta */
-        "#5e8d87", /* cyan    */
-        "#405060", /* white   */
+        "#3b4252", /* black   */
+        "#bf616a", /* red     */
+        "#a3be8c", /* green   */
+        "#ebcb8b", /* yellow  */
+        "#81a1c1", /* blue    */
+        "#b48ead", /* magenta */
+        "#88c0d0", /* cyan    */
+        "#e5e9f0", /* white   */
 
 	
 	
 	/* 8 bright colors */
-        "#373b41", /* black   */
-        "#ca8484", /* red     */
-        "#719b85", /* green   */
-        "#efcd8b", /* yellow  */
- 	"#81a2be", /* blue    */
-        "#b294bb", /* magenta */
-        "#8abeb7", /* cyan    */
-        "#adb9b7", /* white   */
+        "#4c566a", /* black   */
+        "#bf616a", /* red     */
+        "#a3be8c", /* green   */
+        "#ebcb8b", /* yellow  */
+ 	"#81a1c1", /* blue    */
+        "#b48ead", /* magenta */
+        "#8fbcbb", /* cyan    */
+        "#eceff4", /* white   */
 
 	
 	[255] = 0,
 
 	/* more colors can be added after 255 to use with DefaultXX */
 
-        "#080808", /* background */
-        "#f0f4ef", /* foreground */
+        "#d8dee9", /* default foreground colour */
+        "#1b1e25", /* default background colour */
 };
 
 
@@ -136,10 +136,10 @@ static const char *colorname[] = {
  * foreground, background, cursor, reverse cursor
  */
 
-unsigned int defaultfg = 257;
-unsigned int defaultbg = 256;
-unsigned int defaultcs = 257;
-static unsigned int defaultrcs = 256;
+unsigned int defaultfg = 256;
+unsigned int defaultbg = 257;
+unsigned int defaultcs = 256;
+static unsigned int defaultrcs = 257;
 
 
 /*
@@ -184,6 +184,8 @@ static uint forcemousemod = ShiftMask;
  */
 static MouseShortcut mshortcuts[] = {
 	/* mask                 button   function        argument       release */
+	{ ShiftMask,            Button4, kscrollup,      {.i = 1} },
+	{ ShiftMask,            Button5, kscrolldown,    {.i = 1} },
 	{ XK_ANY_MOD,           Button2, selpaste,       {.i = 0},      1 },
 	{ ShiftMask,            Button4, ttysend,        {.s = "\033[5;2~"} },
 	{ XK_ANY_MOD,           Button4, ttysend,        {.s = "\031"} },
@@ -209,6 +211,8 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Y,           selpaste,       {.i =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,        {.i =  0} },
+	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
+	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 };
 
 /*
@@ -286,7 +290,7 @@ static Key key[] = {
 	{ XK_KP_Delete,     ControlMask,    "\033[3;5~",    +1,    0},
 	{ XK_KP_Delete,     ShiftMask,      "\033[2K",      -1,    0},
 	{ XK_KP_Delete,     ShiftMask,      "\033[3;2~",    +1,    0},
-	{ XK_KP_Delete,     XK_ANY_MOD,     "\033[P",       -1,    0},
+	{ XK_KP_Delete,     XK_ANY_MOD,     "\033[3~",       -1,    0},
 	{ XK_KP_Delete,     XK_ANY_MOD,     "\033[3~",      +1,    0},
 	{ XK_KP_Multiply,   XK_ANY_MOD,     "\033Oj",       +2,    0},
 	{ XK_KP_Add,        XK_ANY_MOD,     "\033Ok",       +2,    0},
@@ -354,7 +358,7 @@ static Key key[] = {
 	{ XK_Delete,        ControlMask,    "\033[3;5~",    +1,    0},
 	{ XK_Delete,        ShiftMask,      "\033[2K",      -1,    0},
 	{ XK_Delete,        ShiftMask,      "\033[3;2~",    +1,    0},
-	{ XK_Delete,        XK_ANY_MOD,     "\033[P",       -1,    0},
+	{ XK_Delete,        XK_ANY_MOD,     "\033[3~",       -1,    0},
 	{ XK_Delete,        XK_ANY_MOD,     "\033[3~",      +1,    0},
 	{ XK_BackSpace,     XK_NO_MOD,      "\177",          0,    0},
 	{ XK_BackSpace,     Mod1Mask,       "\033\177",      0,    0},
